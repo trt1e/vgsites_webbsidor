@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(135, 135, 142);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Main */
+main {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 30rem 1fr;
+    grid-template-rows: 1fr;
+}
+
+/* Left */
+#left_container {
+    
+}
+.line_container {
+    width: 30rem;
+    height: fit-content;
+    max-height: 8rem;
+    overflow: hidden;
+    border-bottom: 2px solid rgb(47, 47, 49);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+.line_container h2 .red {
+    color: rgb(137, 19, 19);
+}
+.line_container .inner p:first-child {
+    font-size: 1.4rem;
+}
+
+/* Right */
+#right_container {
+    padding-left: 1rem;
+    text-align: right;
+}
