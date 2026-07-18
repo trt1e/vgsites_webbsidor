@@ -26,6 +26,7 @@ main {
     max-height: 8rem;
     overflow: hidden;
     border-bottom: 2px solid rgb(47, 47, 49);
+    padding-bottom: 1rem;
     margin-bottom: 1rem;
 }
 .line_container h2 .red {

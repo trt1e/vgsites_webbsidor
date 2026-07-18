@@ -30,20 +30,26 @@ function generate_line_next_stop_times() {
     for (let id_nr = 0; id_nr < SL_stations_ids.length; id_nr++) {
         const fetch_url = "https://transport.integration.sl.se/v1/sites/" + SL_stations_ids[id_nr] + "/departures";
 
+        let count = 0;
+
         fetch(fetch_url)
         .then(response => response.json())
         .then(data => {
             data.departures.forEach(departure => {
-                const line_nr = departure.line.designation;
-                const time_left = departure.display;
-                const destination = departure.destination;
-                if (approved_lines.includes(line_nr)) {
-                    const line_container_element = document.querySelector(".line_container#line_" + line_nr + " .inner");
-                    const p_element = document.createElement("p");
-                    p_element.innerHTML = "Mot " + destination + " går om " + time_left;
-                    const created_p_element = line_container_element.appendChild(p_element);
+                if (count < 5) {
+                    const line_nr = departure.line.designation;
+                    const time_left = departure.display;
+                    const destination = departure.destination;
+                    if (approved_lines.includes(line_nr)) {
+                        const line_container_element = document.querySelector(".line_container#line_" + line_nr + " .inner");
+                        const p_element = document.createElement("p");
+                        p_element.innerHTML = "Mot " + destination + " går om " + time_left;
+                        const created_p_element = line_container_element.appendChild(p_element);
 
-                    console.log(`Linje ${departure.line.designation} mot ${departure.destination}: ${time_left}`);
+                        console.log(`Linje ${departure.line.designation} mot ${departure.destination}: ${time_left}`);
+                    };
+                    count += 1;
+                    console.log(count)
                 };
             });
         })
