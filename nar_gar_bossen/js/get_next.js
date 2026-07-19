@@ -7,9 +7,13 @@ Bokbindarvägen linje: 147
 Telefonplan linje: 14
 Örnsberg linje: 13
 
+Bokbindarvägen destination: Liljeholmen
+Telefonplan destination: Liljeholmen, Slussen, T-centralen, Östermalmstorg, Tekniska högskolan, Mörby centrum
+Örnsberg destination: Liljeholmen, Slussen, T-centralen, Östermalmstorg, Ropsten
 */
 const SL_stations_ids = [1734, 9263, 9292]; // these need to be in number form
 const approved_lines = ["147", "14", "13"]; // these need to be in string form
+const approved_destinations = ["Liljeholmen", "Slussen", "T-centralen", "Östermalmstorg", "Tekniska högskolan", "Mörby centrum", "Ropsten"]
 
 document.addEventListener("DOMContentLoaded", () => {
     generate_line_next_stop_times();
@@ -40,16 +44,17 @@ function generate_line_next_stop_times() {
                     const line_nr = departure.line.designation;
                     const time_left = departure.display;
                     const destination = departure.destination;
-                    if (approved_lines.includes(line_nr)) {
-                        const line_container_element = document.querySelector(".line_container#line_" + line_nr + " .inner");
-                        const p_element = document.createElement("p");
-                        p_element.innerHTML = "Mot " + destination + " går om " + time_left;
-                        const created_p_element = line_container_element.appendChild(p_element);
+                    if (approved_destinations.includes(destination)) {
+                        if (approved_lines.includes(line_nr)) {
+                            const line_container_element = document.querySelector(".line_container#line_" + line_nr + " .inner");
+                            const p_element = document.createElement("p");
+                            p_element.innerHTML = "Mot " + destination + " går om " + time_left;
+                            const created_p_element = line_container_element.appendChild(p_element);
 
-                        console.log(`Linje ${departure.line.designation} mot ${departure.destination}: ${time_left}`);
+                            console.log(`Linje ${departure.line.designation} mot ${departure.destination}: ${time_left}`);
+                        };
+                        count += 1;
                     };
-                    count += 1;
-                    console.log(count)
                 };
             });
         })
